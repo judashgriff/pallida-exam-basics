@@ -1,0 +1,37 @@
+What is the constructor? When it is used?
+
+
+A constructor is a function of a class which is automatically started instantly when the class is initialised. 
+It is called __init__ because it initialises first.
+
+For example:
+
+class House:
+    def __init__(self):
+        self.floors = 3
+        self.window_per_floor = 6
+
+    def count_windows(self):
+        windows_total = self.floors * self.window_per_floor
+        print(windows_total)
+
+
+house = House()
+house.count_windows()
+
+In the example above 
+        
+        def __init__(self):
+        self.floors = 3
+        self.window_per_floor = 6
+
+                        is the constructor. This will always run first when the House class is called. 
+
+The "count_windows" method will only run when it is specificly called like above and here in line 34, 
+so it is not part of the constructor:
+
+        house = House()
+        house.count_windows()
+
+Constuctors are mostly used when we want to provide universal attributes to a class, which are automatically 
+inherited to a child class as well, or overwriting their parent classes values from their constructor.
