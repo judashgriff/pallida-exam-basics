@@ -41,28 +41,79 @@
 
 class CandyShop:
     def __init__(self):
-        self.sugar_amount = 0
-        self.sugar = str(self.sugar_amount) + "gr"
-        self.income = 0
-        self.inventory = {"candies": 0,
-                          "lollipops": 0}
+        self.sugar_amount = 150
+        self.income = 50
+        self.inventory = {"candy": 4,
+                          "lollipop": 3}
         self.show_what_we_have()
+        self.candy_price = 20
+        self.lollipop_price = 10
+
+    def calculate_sugar(self):
+        return str(self.sugar_amount) + "gr"
 
     def show_what_we_have(self):
-        print("Invetory: " + str(self.inventory["candies"]) + "\
- candies, " + str(self.inventory["lollipops"]) + "\
- lollipops, Income:" + str(self.income) + "\
-, Sugar: " + self.sugar)
+        print("Invetory: " + str(self.inventory["candy"]) +
+              " candies, " + str(self.inventory["lollipop"]) +
+              " lollipops, Income:" + str(self.income) +
+              ", Sugar: " + self.calculate_sugar())
+
 
     def create_sweets(self, sweet):
-        if sweet == "candy":
-            self.sugar_amount -= 10
-            self.inventory["candies"] += 1
-        elif sweet == "lollipop":
+        if sweet == "lollipop":
             self.sugar_amount -= 5
-            self.inventory["lollipops"] += 1
+            self.inventory[sweet] += 1
+        elif sweet == "candy":
+            self.sugar_amount -= 10
+            self.inventory[sweet] += 1
         else:
-            print("We don't make that kind of sweets here.")
+            print("\nWe don't make that kind of sweets here.")
+            return
+        self.show_what_we_have()
+
+
+    def sell_sweets(self, sweet, amount):
+        if sweet == "lollipop" and amount <= self.inventory[sweet]:
+            self.inventory[sweet] -= amount
+            self.income += amount * self.lollipop_price
+        elif sweet == "candy" and amount <= self.inventory[sweet]:
+            self.inventory[sweet] -= amount
+            self.income += amount * self.candy_price
+        elif sweet in self.inventory and amount > self.inventory[sweet]:
+            print("\nWe don't have enaugh " + sweet + "s to sell!")
+        else:
+            print("\nWe don't sell that kind of sweets here.")
+            return
+        self.show_what_we_have()
+
+
+    def buy_sugar(self, amount):
+        if self.income >= int(amount / 10):
+            self.sugar_amount += amount
+            self.income -= int(amount / 10)
+        else:
+            print("\nWe don't have enough money to buy this much sugar!")        
+        self.show_what_we_have()
+        
+    def increase_prices(self, amount):
+        self.candy_price += self.candy_price * amount / 100
+        self.lollipop_price += self.lollipop_price * amount / 100
+
+
+''' Test the exercise with theese if you like '''
 
 
 candy_shop = CandyShop()
+# candy_shop.create_sweets("candy")
+# candy_shop.create_sweets("lollipop")
+# candy_shop.create_sweets("sweet roll")
+
+# candy_shop.sell_sweets("candy", 3)
+# candy_shop.sell_sweets("lollipop", 6)
+# candy_shop.sell_sweets("sweet roll", 6)
+
+# candy_shop.buy_sugar(500)
+# candy_shop.buy_sugar(1500856)
+
+# candy_shop.increase_prices(50)
+# candy_shop.sell_sweets("candy", 1)
