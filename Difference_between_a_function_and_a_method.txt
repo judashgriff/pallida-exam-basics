@@ -1,0 +1,31 @@
+Methods and functions are pretty much the same. 
+
+Functions only work when called. 
+
+Methods are functions which are object oriented as well. That means that they are in a class.
+For example:
+
+class House:
+    def __init__(self):
+        self.floors = 3
+        self.window_per_floor = 6
+
+    def count_windows(self):
+        windows_total = self.floors * self.window_per_floor
+        print(windows_total)
+
+
+def count_trees_aruond_the_house():
+    if desert = True:
+        print("There are no trees around this house. It's in the desert!")
+
+desert = True
+
+count_trees_aruond_the_house()
+
+house = House()
+house.count_windows()
+
+
+In the example above "count_windows" is a method of the House class, 
+while "count_trees_aruond_the_house" is an independent function.
