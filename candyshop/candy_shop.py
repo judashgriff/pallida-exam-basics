@@ -58,7 +58,6 @@ class CandyShop:
               " lollipops, Income:" + str(self.income) +
               ", Sugar: " + self.calculate_sugar())
 
-
     def create_sweets(self, sweet):
         if sweet == "lollipop":
             self.sugar_amount -= 5
@@ -70,7 +69,6 @@ class CandyShop:
             print("\nWe don't make that kind of sweets here.")
             return
         self.show_what_we_have()
-
 
     def sell_sweets(self, sweet, amount):
         if sweet == "lollipop" and amount <= self.inventory[sweet]:
@@ -86,7 +84,6 @@ class CandyShop:
             return
         self.show_what_we_have()
 
-
     def buy_sugar(self, amount):
         if self.income >= int(amount / 10):
             self.sugar_amount += amount
@@ -100,8 +97,8 @@ class CandyShop:
         self.lollipop_price += self.lollipop_price * amount / 100
 
 
-''' Test the exercise with theese if you like '''
 
+''' Test the exercise with these preset function calls if you like '''
 
 candy_shop = CandyShop()
 # candy_shop.create_sweets("candy")
