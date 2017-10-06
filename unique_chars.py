@@ -7,7 +7,7 @@
 
 def unique_characters(string):
     unique_chars_list = []
-    for letter in string:
+    for letter in string.replace(" ", ""):
         if letter not in unique_chars_list:
             unique_chars_list.append(letter)
     return unique_chars_list
