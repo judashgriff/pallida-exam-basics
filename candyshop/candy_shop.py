@@ -17,24 +17,52 @@
 # The CandyShop should be represented as string in this format:
 # "Inventory: 3 candies, 2 lollipops, Income: 100, Sugar: 400gr"
 
-candy_shop = CandyShop(300)
-candy_shop.create_sweets("candy")
-candy_shop.create_sweets("candy")
-candy_shop.create_sweets("lollipop")
-candy_shop.create_sweets("lollipop")
-print(candy_shop)
-# Should print out:
-# Invetory: 2 candies, 2 lollipops, Income: 0, Sugar: 270gr
-candy_shop.sell("candy", 1)
-print(candy_shop
-# Should print out:
-# "Invetory: 1 candies, 2 lollipops, Income:20, Sugar: 285gr"
-candy_shop.raise_prices(5)
-candy_shop.sell("lollipop", 1)
-print(candy_shop)
-# Should print out:
-# "Invetory: 1 candies, 1 lollipops, Income:35, Sugar: 285gr"
-candy_shop.buy_sugar(300)
-print(candy_shop)
+# candy_shop = CandyShop(300)
+# candy_shop.create_sweets("candy")
+# candy_shop.create_sweets("candy")
+# candy_shop.create_sweets("lollipop")
+# candy_shop.create_sweets("lollipop")
+# print(candy_shop)
+# # Should print out:
+# # Invetory: 2 candies, 2 lollipops, Income: 0, Sugar: 270gr
+# candy_shop.sell("candy", 1)
+# print(candy_shop)
+# # Should print out:
+# # "Invetory: 1 candies, 2 lollipops, Income:20, Sugar: 285gr"
+# candy_shop.raise_prices(5)
+# candy_shop.sell("lollipop", 1)
+# print(candy_shop)
+# # Should print out:
+# # "Invetory: 1 candies, 1 lollipops, Income:35, Sugar: 285gr"
+# candy_shop.buy_sugar(300)
+# print(candy_shop)
 # Should print out:
 # "Invetory: 1 candies, 1 lollipops, Income:5, Sugar: 315gr"
+
+class CandyShop:
+    def __init__(self):
+        self.sugar_amount = 0
+        self.sugar = str(self.sugar_amount) + "gr"
+        self.income = 0
+        self.inventory = {"candies": 0,
+                          "lollipops": 0}
+        self.show_what_we_have()
+
+    def show_what_we_have(self):
+        print("Invetory: " + str(self.inventory["candies"]) + "\
+ candies, " + str(self.inventory["lollipops"]) + "\
+ lollipops, Income:" + str(self.income) + "\
+, Sugar: " + self.sugar)
+
+    def create_sweets(self, sweet):
+        if sweet == "candy":
+            self.sugar_amount -= 10
+            self.inventory["candies"] += 1
+        elif sweet == "lollipop":
+            self.sugar_amount -= 5
+            self.inventory["lollipops"] += 1
+        else:
+            print("We don't make that kind of sweets here.")
+
+
+candy_shop = CandyShop()

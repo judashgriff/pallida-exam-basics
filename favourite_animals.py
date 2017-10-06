@@ -12,21 +12,30 @@ from sys import argv
 
 class Controller:
     def __init__(self):
-        if len(argv) == 1:
-            v = View()
-            v.print_options()
-        else:
-            d = Dictionary()
-            animals_list = d.make_dictionary()
-            self.select_operation(animals_list)
+        d = Dictionary()
+        animals_list = d.make_dictionary()
+            if len(argv) == 1:
+                v = View()
+                v.print_options()
+            else:
+                self.select_operation(animals_list)
 
 class View:
-    
+    def __init__(self):
+        d = Dictionary()
+
     def print_options(self):
-        
+        print("fav_animals")
+        for animal in d.animals_list:
+            print(animal)
 
 
 class Dictionary:
+    def __init__(self):
+        self.animals_list = []
 
     def make_dictionary(self):
-        pass
+        with open("favourites.txt", "r") as animals:
+            for line in animals:
+                if line not in self.animals_list:
+                    self.animals_list.append(line)
